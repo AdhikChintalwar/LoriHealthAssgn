@@ -4,12 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
 import { useState } from 'react';
+import { Button } from 'bootstrap';
 function App() {
   const now = new Date();
+
   const [date, setdate] = useState(now);
-  console.log(date);
-  const formatDate=date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getUTCFullYear()
-  console.log(formatDate)
+  const formatDate=date.getDate+"-"+date.getMonth+"-"+date.getUTCFullYear
   const [slot, setslot] = useState('');
   const dummyData = [
     {
@@ -67,7 +67,7 @@ function App() {
 
   }
   const bookSlot=function() {
-    const result = dummyData.find((z) => z.date === (formatDate));
+    const result = dummyData.find((z) => z.date === (date.getDate() + '-' + (date.getMonth()+1) + '-' + date.getFullYear()));
 
    if(slot=== result.Avltime){
      alert('slot booked');
@@ -82,7 +82,7 @@ function App() {
     <div className="container-fluid d-flex bg-primary">
       <div className='container-fluid d-flex' style={{ alignContent: 'center', flexDirection: 'column', justifyItems: 'center' }}>
 
-        <DatePicker selected={date} onChange={(date) => {setdate(date);checkAvl(formatDate)}}  ></DatePicker>
+        <DatePicker selected={date} onChange={(date) => {setdate(date);checkAvl(date.getDate() + '-' +(date.getMonth()+1) + '-' + date.getFullYear())}}  ></DatePicker>
         {/* onInputClick={checkAvl(date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear())} */}
         <button onClick={() => setslot('6:30')}>6:30</button>
 
