@@ -33,7 +33,7 @@
                     <button id="avlslots" class="btn btn-info"></button>
 
                     <br>
-                    <button class="btn btn-primary m-25" id="book"> Book slots</button>
+                    <button class="btn  m-25" style="background-color: blue;color: aliceblue;" id="book"> Book slots</button>
                 </div>
             </div>
             <!-- //..................... -->
@@ -90,8 +90,10 @@
                     $('#input').on("change", function () {
                         date = $('#input').val();
                         console.log(date)
-                       
+                       selected=false;
                         $('#avlslots').hide();
+                        $("#avlslots").css("background-color","blue")
+
                         check(date);
                     });
                     $('#book').on("click", function () { selected===true?alert("slot Booked for "+result.Avltime+" on "+result.date):alert("select a slot") });
