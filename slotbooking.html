@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <script src="slotbooking.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker.css"> -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class='col-sm-6'>
+                <div class="form-group">
+                    <div class='input-group date' data-date-format="dd/mm/yyyy" id='datetimepicker1'>
+                        <input type='text' id="input" class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                    <div><p>Available Slots<br></p></div>
+                    <button id="avlslots" class="btn btn-info"></button>
+
+                    <br>
+                    <button class="btn btn-primary m-25" id="book"> Book slots</button>
+                </div>
+            </div>
+            <!-- //..................... -->
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    $('#avlslots').hide();
+
+                })
+                $(function () {
+                    const dummyData = [
+                        {
+                            date: '02/02/2022',
+                            Avltime: '7:30',
+                            Avl: true
+                        },
+                        {
+                            date: '12/02/2022',
+                            Avltime: '6:30',
+                            Avl: true
+                        },
+                        {
+                            date: '12/02/2022',
+                            Avltime: '7:30',
+                            Avl: false
+                        },
+                        {
+                            date: '14/02/2022',
+                            Avltime: '8:30',
+                            Avl: false
+                        },
+                        {
+                            date: '13/02/2022',
+                            Avltime: '8:30',
+                            Avl: true
+                        }
+
+                    ]
+                    var date;
+                    var result;
+                    var avlslots;
+                    $('#datetimepicker1').datepicker({
+                        daysOfWeekHighlighted: "6,0",
+                        autoclose: true,
+                        dateFormat: "dd-mm-yy",
+
+
+                    });
+                    $('#input').on("change", function () {
+                        date = $('#input').val();
+                        console.log(date)
+                       
+                        $('#avlslots').hide();
+                        check(date);
+                    });
+                    $('#book').on("click", function () { alert("slot Booked for "+result.Avltime+" on "+result.date) });
+                   
+                    function check(e) {
+                        console.log(e)
+                        result = dummyData.find((z) => z.date === e);
+                        console.log(result);
+                        if (result === undefined) {
+                            alert('slots not available on that date')
+                        }
+                        else {
+
+                            if (result.Avl == true) {
+                                //   avlslots=result.Avltime;
+                                $("#avlslots").html(result.Avltime)
+                                
+                                    $('#avlslots').show();
+                                
+                            }
+                            else {
+                                alert("slot unavailable");
+                            }
+                        }
+                    }
+                });
+
+                
+            </script>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
