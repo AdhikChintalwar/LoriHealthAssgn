@@ -75,6 +75,7 @@
                     var date;
                     var result;
                     var avlslots;
+                    var selected=false;
                     $('#datetimepicker1').datepicker({
                         daysOfWeekHighlighted: "6,0",
                         autoclose: true,
@@ -82,6 +83,11 @@
 
 
                     });
+                    $("#avlslots").click(function(){
+                         selected=true,
+                         $("#avlslots").css("background-color","green")
+                    }
+                    )
                     $('#input').on("change", function () {
                         date = $('#input').val();
                         console.log(date)
@@ -89,7 +95,7 @@
                         $('#avlslots').hide();
                         check(date);
                     });
-                    $('#book').on("click", function () { alert("slot Booked for "+result.Avltime+" on "+result.date) });
+                    $('#book').on("click", function () { selected===true?alert("slot Booked for "+result.Avltime+" on "+result.date):alert("select a slot") });
                    
                     function check(e) {
                         console.log(e)
